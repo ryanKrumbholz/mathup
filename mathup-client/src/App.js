@@ -19,6 +19,7 @@ function App() {
     //     <Switch>
     //     {/* <ProtectedRoute path="/account" component={Account} /> */}
     //     {/* <ProtectedRoute path="/challenge" component={Challenge} /> */}
+      //     {/* <ProtectedRoute path="/topic" component={Topic} /> */}
     //       <Route path="/login">
     //         {/* <Login /> */}
     //       </Route>

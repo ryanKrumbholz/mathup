@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const Problem_Card = () => {
+const Problem_Card = props => {
 
-    let problem = "4 + 4 = ";
+    let problem = props.problem;
 
     return (
     <Card>
