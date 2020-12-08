@@ -4,7 +4,7 @@ import './Home.sass';
 const Home = () => {
     return (
         <div>
-
+            
         </div>
     );
 };
