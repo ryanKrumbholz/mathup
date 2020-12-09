@@ -166,7 +166,7 @@ const Problem_Container = () => {
                 ceil = ans + 10;
                 for (let i = 0; i < 3; i++) {
                     let val = random.integer(floor,ceil);
-                    if (val !== answer) {
+                    if (val !== ans && !answersMap.has(val)) {
                         ansArr.push(val);
                         answersMap.set(val, val);
                     }
