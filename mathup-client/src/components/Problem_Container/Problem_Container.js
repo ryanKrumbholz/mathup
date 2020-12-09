@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Problem_Card from '../Problem_Card/Problem_Card';
 import Answer_Container from '../Answer_Container/Answer_Container';
 import { Random } from "random-js";
 
 const Problem_Container = () => {
 
+    const [isCorrect, setCorrect] = useState(false);
+
     const random = new Random();
+    let type = 'addition';
     let problem;
-    let answer;
+    let ans;
     let answers = [];
     
     //TODO Create function to generate problem based on problem type
@@ -100,10 +103,6 @@ const Problem_Container = () => {
         return [p, ans, ansArr];
     };
 
-    //Todo Create function to generate answer for problem
-    const genAnswer = (type, problem) => {
-
-    }
 
     //TODO Create function to get problem from db if problem cannot be auto generated;
     const getProblem = type => {
@@ -164,6 +163,7 @@ const Problem_Container = () => {
             case 'divideTens':
                 floor = ans - 10;
                 ceil = ans + 10;
+                // Looping the length of remaining cards to be filled after pushing correct answer to array.
                 for (let i = 0; i < 3; i++) {
                     let val = random.integer(floor,ceil);
                     if (val !== ans && !answersMap.has(val)) {
@@ -171,6 +171,7 @@ const Problem_Container = () => {
                         answersMap.set(val, val);
                     }
                     else {
+                        // While current value is already not in the array. Checks hashmap.
                         while (answersMap.has(val)) {
                             val = random.integer(floor,ceil);
                         }
@@ -185,8 +186,17 @@ const Problem_Container = () => {
         return shuffle(ansArr);
     }
 
-    let problemData = genProblem('additionOnes');
+
+    // Generates new problem. Called when the correct answer is chosen.
+    const nxProblem = () => {
+        genProblem(type);
+        for (let i = 0; i < 2; i++) {setCorrect(!isCorrect)};
+    }
+
+
+    let problemData = genProblem(type);
     problem = problemData[0];
+    ans = problemData[1];
     answers = problemData[2];
     
 
@@ -195,7 +205,7 @@ const Problem_Container = () => {
     return (
         <div>
             <Problem_Card problem = {problem}/>
-            <Answer_Container answers = {answers}/>
+            <Answer_Container answers = {answers} corrAns = {ans} nxProblem = {nxProblem}/>
         </div>
     );
 }

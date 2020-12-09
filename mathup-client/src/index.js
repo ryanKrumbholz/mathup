@@ -6,13 +6,14 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from '@auth0/auth0-react';
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <Auth0Provider>
+    <Auth0ProviderWithHistory>
       <App />
-    </Auth0Provider>
+    </Auth0ProviderWithHistory>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
