@@ -10,21 +10,18 @@ import Home from './components/Home/Home';
 import ProtectedRoute from "./auth/protected-route";
 import Challenge from './components/Challenge/Challenge';
 import Navbar from './components/Navbar/Navbar';
+import Account from './components/Account/Account';
+import Topics from './components/Topics/Topics'
 
 function App() {
   return (
     <div>
     <Navbar />
-    {/* // <Challenge /> */}
-
     <Router>
         <Switch>
-        {/* <ProtectedRoute path="/account" component={Account} /> */}
+        <ProtectedRoute path="/account" component={Account} />
         <ProtectedRoute path="/challenge" component={Challenge} />
-          {/* <ProtectedRoute path="/topic" component={Topic} /> */}
-          <Route path="/login">
-            {/* <Login /> */}
-          </Route>
+          <ProtectedRoute path="/topics" component={Topics} />
           <Route path="/">
             <Home />
           </Route>

@@ -8,6 +8,7 @@ const NavBar = () => {
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
           <div className="navbar-brand logo" />
+          <a href="/">Home</a>
           <AuthNav />
         </div>
       </nav>

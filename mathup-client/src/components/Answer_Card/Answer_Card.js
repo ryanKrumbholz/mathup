@@ -18,7 +18,7 @@ const Answer_Card = props => {
         setTimeout(() => setColor('white'), 2000);
     }
     return (
-        <Card onClick={() => submit()} style = {{background: color}}>
+        <Card className="answerCards" onClick={() => submit()} style = {{background: color}}>
             <Card.Body>{answer}</Card.Body>
         </Card>
     );

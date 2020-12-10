@@ -10,6 +10,14 @@ const Answer_Container = props => {
     const checkAnswer = (ans) => {
         if (ans == corrAns) {
             setTimeout(() => nxProblem(), 2000);
+            let cards = document.getElementsByClassName("answerCards");
+            let len =  cards.length;
+
+            //looping through all of the answer cards to reset bg to white after correct answer has been chosen
+            for (let i = 0; i < len; i++) {
+                cards[i].style.backgroundColor="white";
+                cards[i].onClick=""; //temporarily disables onclick function from firing after correct answer is chosen.
+            }
             return true;
         }
         else {
