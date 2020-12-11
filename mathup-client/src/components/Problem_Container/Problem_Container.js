@@ -17,9 +17,11 @@ const Problem_Container = () => {
     
     //TODO Create function to generate problem based on problem topic
     const genProblem = topic => {
-        let p;
-        let n;
-        let k;
+        let p; //problem
+        let p2; //problem 2
+        let n; //an integer
+        let k; //an integer
+        let c; //a constant int
         let ans;
         let ansArr;
         switch (topic) {
@@ -100,6 +102,16 @@ const Problem_Container = () => {
                 ans = n / k;
                 break;
             case 'sysEq':
+                n = random.integer(0,30);
+                k = random.integer(0,30);
+                c = random.integer(0,30);
+                p  = `${n}x + ${k}y = ${c}`;
+                n = random.integer(0,30);
+                k = random.integer(0,30);
+                c = random.integer(0,30);
+                p2  = `${n}x + ${k}y = ${c}`;
+                p = `${p}, ${p2}`;
+                // ans = (n1,n2);
                 break;
         }
         ansArr = pushAnswersAndShuffle(topic, ans);

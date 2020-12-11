@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
@@ -9,19 +8,29 @@ import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import { createStore } from 'redux';
 import allReducers from './reducers/All_Reducers';
 import { BrowserRouter as Router } from "react-router-dom";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 
-let store = createStore(allReducers);
-export const history = createBrowserHistory();
-
-
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+ 
+const persistedReducer = persistReducer(persistConfig, allReducers);
+let store = createStore(persistedReducer);
+let persistor = persistStore(store);
+ 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-      <Auth0ProviderWithHistory>
+        <Auth0ProviderWithHistory>
+        <PersistGate loading={null} persistor={persistor}>
         <App />
-      </Auth0ProviderWithHistory>
-    </Router>
+        </PersistGate>
+        </Auth0ProviderWithHistory>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
