@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import Problem_Card from '../Problem_Card/Problem_Card';
 import Answer_Container from '../Answer_Container/Answer_Container';
 import { Random } from "random-js";
+import { useSelector } from 'react-redux';
 
 const Problem_Container = () => {
 
     const [isCorrect, setCorrect] = useState(false);
-
+    const topic = useSelector(state => state.topic);
     const random = new Random();
-    let type = 'addition';
     let problem;
     let ans;
     let answers = [];
+
     
-    //TODO Create function to generate problem based on problem type
-    const genProblem = type => {
+    
+    //TODO Create function to generate problem based on problem topic
+    const genProblem = topic => {
         let p;
         let n;
         let k;
         let ans;
         let ansArr;
-        switch (type) {
+        switch (topic) {
             default:
-                console.log('Error with problem type.');
+                console.log('Error with problem topic.');
+                console.log(topic)
                 break;
             case 'additionOnes':
                 n = random.integer(0,9);
@@ -99,18 +102,18 @@ const Problem_Container = () => {
             case 'sysEq':
                 break;
         }
-        ansArr = pushAnswersAndShuffle(type, ans);
+        ansArr = pushAnswersAndShuffle(topic, ans);
         return [p, ans, ansArr];
     };
 
 
     //TODO Create function to get problem from db if problem cannot be auto generated;
-    const getProblem = type => {
+    const getProblem = topic => {
 
     }
 
     //TODO Create function to get answer from db if answer cannot be
-    const getAnswer = type => {
+    const getAnswer = topic => {
 
     }
 
@@ -136,7 +139,7 @@ const Problem_Container = () => {
         return array;
       };
 
-    const pushAnswersAndShuffle = (type, ans) => {
+    const pushAnswersAndShuffle = (topic, ans) => {
         let answersMap = new Map();
         let ansArr = [];
         let floor;
@@ -145,9 +148,9 @@ const Problem_Container = () => {
         ansArr.push(ans);
         answersMap.set(ans, ans);
 
-        switch (type){
+        switch (topic){
             default:
-                console.log('Problem type error.');
+                console.log('Problem topic error.');
                 break;
             case 'addition':
             case 'additionOnes':
@@ -189,12 +192,12 @@ const Problem_Container = () => {
 
     // Generates new problem. Called when the correct answer is chosen.
     const nxProblem = () => {
-        genProblem(type);
+        genProblem(topic);
         for (let i = 0; i < 2; i++) {setCorrect(!isCorrect)};
     }
 
 
-    let problemData = genProblem(type);
+    let problemData = genProblem(topic);
     problem = problemData[0];
     ans = problemData[1];
     answers = problemData[2];

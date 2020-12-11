@@ -1,11 +1,21 @@
-import React, {onRedirectCallback} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { createBrowserHistory } from 'history';
 import './index.css';
 import App from './App';
-import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { createStore } from 'redux';
+import allReducers from './reducers/All_Reducers';
+
+let store = createStore(allReducers);
+export const history = createBrowserHistory();
+
+const onRedirectCallback = (appState) => {
+  // Use the router's history module to replace the url
+  history.replace(appState?.returnTo || window.location.pathname);
+};
 
 ReactDOM.render(
   <React.StrictMode>

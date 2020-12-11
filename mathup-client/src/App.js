@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +11,14 @@ import ProtectedRoute from "./auth/protected-route";
 import Challenge from './components/Challenge/Challenge';
 import Navbar from './components/Navbar/Navbar';
 import Account from './components/Account/Account';
-import Topics from './components/Topics/Topics'
+import Topics from './components/Topics/Topics';
 
 function App() {
   return (
     <div>
+    <Challenge />
+    <Topics />
+
     <Navbar />
     <Router>
         <Switch>
