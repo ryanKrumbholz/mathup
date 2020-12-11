@@ -12,8 +12,20 @@ import Challenge from './components/Challenge/Challenge';
 import Navbar from './components/Navbar/Navbar';
 import Account from './components/Account/Account';
 import Topics from './components/Topics/Topics';
+import auth0  from 'auth0-js';
+
 
 function App() {
+  // let webAuth = new auth0.WebAuth({
+  //   domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  //   clientID: process.env.REACT_APP_AUTH0_CLIENT_ID
+  // });
+
+  // webAuth.checkSession({
+  //   nonce: '1234',
+  // }, function (err, authResult) {
+  //     console.log(err, authResult)
+  // });
   return (
     <div>
     <Challenge />
@@ -25,6 +37,9 @@ function App() {
         <ProtectedRoute path="/account" component={Account} />
         <ProtectedRoute path="/challenge" component={Challenge} />
           <ProtectedRoute path="/topics" component={Topics} />
+          <Route path="/about">
+            <Home />
+          </Route>
           <Route path="/">
             <Home />
           </Route>

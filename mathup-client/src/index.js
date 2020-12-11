@@ -5,24 +5,23 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import { Auth0Provider } from '@auth0/auth0-react';
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import { createStore } from 'redux';
 import allReducers from './reducers/All_Reducers';
+import { BrowserRouter as Router } from "react-router-dom";
 
 let store = createStore(allReducers);
 export const history = createBrowserHistory();
 
-const onRedirectCallback = (appState) => {
-  // Use the router's history module to replace the url
-  history.replace(appState?.returnTo || window.location.pathname);
-};
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <Auth0Provider domain={process.env.REACT_APP_AUTH0_DOMAIN} clientId={process.env.REACT_APP_AUTH0_CLIENT_ID} redirectUri={window.location.origin} onRedirectCallback={onRedirectCallback}>
-      <App />
-    </Auth0Provider>
+      <Router>
+      <Auth0ProviderWithHistory>
+        <App />
+      </Auth0ProviderWithHistory>
+    </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
