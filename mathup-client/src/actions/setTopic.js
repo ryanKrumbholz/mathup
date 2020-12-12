@@ -1,5 +1,6 @@
 export const setTopic = topic => {
     return{
-        type: topic
+        type: topic,
+        topic
     };
 };

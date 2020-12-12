@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setTopic } from '../../actions/setTopic';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import Challenge from '../Challenge/Challenge';
 
 const Topics = () => {
     const dispatch = useDispatch();

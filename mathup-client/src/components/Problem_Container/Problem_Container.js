@@ -27,7 +27,7 @@ const Problem_Container = () => {
         switch (topic) {
             default:
                 console.log('Error with problem topic.');
-                console.log(topic)
+                console.log('topic: ', topic)
                 break;
             case 'additionOnes':
                 n = random.integer(0,9);

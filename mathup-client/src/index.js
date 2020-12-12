@@ -5,22 +5,12 @@ import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
-import { createStore } from 'redux';
-import allReducers from './reducers/All_Reducers';
 import { BrowserRouter as Router } from "react-router-dom";
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
+import storeNPersistor from './app/store';
 
-const persistConfig = {
-  key: 'root',
-  storage,
-}
- 
-const persistedReducer = persistReducer(persistConfig, allReducers);
-let store = createStore(persistedReducer);
-let persistor = persistStore(store);
- 
+const {store, persistor} = storeNPersistor();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
