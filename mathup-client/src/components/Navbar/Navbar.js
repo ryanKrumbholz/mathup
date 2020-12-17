@@ -1,6 +1,7 @@
 import React from "react";
 
 import AuthNav from "../Auth_Nav/Auth_Nav";
+import './navbar.sass';
 
 const NavBar = () => {
   return (
@@ -8,7 +9,7 @@ const NavBar = () => {
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
           <div className="navbar-brand logo" />
-          <a href="/">Home</a>
+          <a href="/" id="homelink">Home</a>
           <AuthNav />
         </div>
       </nav>
