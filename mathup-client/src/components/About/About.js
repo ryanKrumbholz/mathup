@@ -1,10 +1,11 @@
 import React from 'react';
+import './About.sass';
 
 const About = () => {
     return(
-        <div>
-            <h1>
-                About
+        <div id="about">
+            <h1 >
+                THIS PAGE IS CURRENTLY REDUNDANT!!!!
             </h1>
         </div>
     )
